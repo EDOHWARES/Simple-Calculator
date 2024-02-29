@@ -3,6 +3,14 @@ import tkinter as tk
 calculation = ''
 
 
+def remove_preceding_zero(string):
+    if string[0] == "0":
+        new_string = string[1:]
+        return new_string
+    else:
+        pass
+
+
 def add_to_calculation(symbol):
     global calculation
     calculation += str(symbol)
@@ -15,7 +23,7 @@ def add_to_calculation(symbol):
 def evaluate_calculation():
     global calculation
     try:
-        calculation = str(eval(calculation))
+        calculation = str(eval(remove_preceding_zero(calculation)))
         text_field.delete(1.0, 'end')
         text_field.insert(1.0, calculation)
     except:
